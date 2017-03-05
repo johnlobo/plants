@@ -17,6 +17,7 @@
 //------------------------------------------------------------------------------
 
 #include <cpctelera.h>
+#include "plants.h"
 
 void main(void) {
    u8* pvmem;  // Pointer to video memory
