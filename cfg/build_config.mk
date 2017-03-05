@@ -140,6 +140,10 @@ include $(CPCT_PATH)/cfg/global_functions.mk
 # Convert images and tilemaps
 include cfg/image_conversion.mk
 include cfg/tilemap_conversion.mk
+<<<<<<< HEAD
+include cfg/music_conversion.mk
+=======
+>>>>>>> 8445e992bba60c109ed4dc211eca50bc351549cb
 
 # Calculate all subdirectories
 SUBDIRS       := $(filter-out ., $(shell find $(SRCDIR) -type d -print))
@@ -148,15 +152,30 @@ OBJSUBDIRS    := $(OBJDSKINCSDIR) $(foreach DIR, $(SUBDIRS), $(patsubst $(SRCDIR
 
 # Calculate all source files
 CFILES         := $(foreach DIR, $(SUBDIRS), $(wildcard $(DIR)/*.$(C_EXT)))
+<<<<<<< HEAD
+CFILES         := $(filter-out $(IMGCFILES), $(CFILES))
+ASMFILES       := $(foreach DIR, $(SUBDIRS), $(wildcard $(DIR)/*.$(ASM_EXT)))
+ASMFILES       := $(filter-out $(IMGASMFILES), $(ASMFILES))
+=======
 CFILES         := $(IMGCFILES) $(filter-out $(IMGCFILES), $(CFILES))
 ASMFILES       := $(foreach DIR, $(SUBDIRS), $(wildcard $(DIR)/*.$(ASM_EXT)))
+>>>>>>> 8445e992bba60c109ed4dc211eca50bc351549cb
 BIN2CFILES     := $(foreach DIR, $(SUBDIRS), $(wildcard $(DIR)/*.$(BIN_EXT)))
 DSKINCSRCFILES := $(wildcard $(DSKFILESDIR)/*)
 
 # Calculate all object files
 BIN_OBJFILES   := $(patsubst %.$(BIN_EXT), %.$(C_EXT), $(BIN2CFILES))
 CFILES         := $(filter-out $(BIN_OBJFILES), $(CFILES))
+<<<<<<< HEAD
+GENC_OBJFILES  := $(patsubst $(SRCDIR)%, $(OBJDIR)%, $(patsubst %.$(C_EXT), %.$(OBJ_EXT), $(IMGCFILES)))
+GENASM_OBJFILES:= $(patsubst $(SRCDIR)%, $(OBJDIR)%, $(patsubst %.$(ASM_EXT), %.$(OBJ_EXT), $(IMGASMFILES)))
+=======
+>>>>>>> 8445e992bba60c109ed4dc211eca50bc351549cb
 C_OBJFILES     := $(patsubst $(SRCDIR)%, $(OBJDIR)%, $(patsubst %.$(C_EXT), %.$(OBJ_EXT), $(BIN_OBJFILES) $(CFILES)))
 ASM_OBJFILES   := $(patsubst $(SRCDIR)%, $(OBJDIR)%, $(patsubst %.$(ASM_EXT), %.$(OBJ_EXT), $(ASMFILES)))
 DSKINCOBJFILES := $(foreach FILE, $(DSKINCSRCFILES), $(patsubst $(DSKFILESDIR)/%, $(OBJDSKINCSDIR)/%, $(FILE)).$(DSKINC_EXT))
 OBJFILES       := $(C_OBJFILES) $(ASM_OBJFILES)
+<<<<<<< HEAD
+GENOBJFILES    := $(GENC_OBJFILES) $(GENASM_OBJFILES)
+=======
+>>>>>>> 8445e992bba60c109ed4dc211eca50bc351549cb

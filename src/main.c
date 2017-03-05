@@ -17,31 +17,7 @@
 //------------------------------------------------------------------------------
 
 #include <cpctelera.h>
-#include "util.h"
 #include "plants.h"
-
-void initialize() {
-   cpct_disableFirmware();
-   cpct_setVideoMode(0);
-/*   cpct_setPalette(g_palette, 16);
-   cpct_setBorder(HW_BLACK);
-   cpct_etm_setTileset2x4(g_tileset);
-   cpct_drawSprite(g_retropolis_0, cpctm_screenPtr(CPCT_VMEM_START,  0, 0), G_RETROPOLIS_0_W, G_RETROPOLIS_0_H);
-   cpct_drawSprite(g_retropolis_1, cpctm_screenPtr(CPCT_VMEM_START, 40, 0), G_RETROPOLIS_0_W, G_RETROPOLIS_0_H);
-   mapa = g_map1;
-   num_mapa = 0;
-   prota.x = prota.px = 0;
-   prota.y = prota.py = 100;
-   prota.estado = ST_quieto;
-   prota.mira   = M_derecha;
-   prota.nframe = 0;
-   prota.mover  = NO;
-   prota.frame  = &g_frames[0];
-   dibujarMapa();
-   dibujarProta();
-   cpct_akp_musicInit(G_song);
-   cpct_setInterruptHandler(interrupcion);*/
-}
 
 void main(void) {
    u8* pvmem;  // Pointer to video memory
