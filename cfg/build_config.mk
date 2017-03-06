@@ -1,5 +1,5 @@
 ##-----------------------------LICENSE NOTICE------------------------------------
-##  This file is part of CPCtelera: An Amstrad CPC Game Engine 
+##  This file is part of CPCtelera: An Amstrad CPC Game Engine
 ##  Copyright (C) 2015 ronaldo / Fremos / Cheesetea / ByteRealms (@FranGallegoBR)
 ##
 ##  This program is free software: you can redistribute it and/or modify
@@ -28,10 +28,10 @@
 ###########################################################################
 
 ## CPCTELERA MAIN PATH
-##   Sets CPCTelera main path for accessing tools and configuration. This 
+##   Sets CPCTelera main path for accessing tools and configuration. This
 ##   variable must point to the folder where source and tools are contained.
 ##   Setup creates and environment variable that will be generally used.
-##   However, when environment variable is not available, this variable 
+##   However, when environment variable is not available, this variable
 ##   should have the correct value for the project to compile.
 ##   If you change folder structure, CPCT_PATH should reflect this change.
 ##   This variable should always have the absolute path value.
@@ -39,7 +39,7 @@
 #>> Uses environment variable $(CPCT_PATH)
 
 ####
-## SECTION 1: Project configuration 
+## SECTION 1: Project configuration
 ##
 ## This section establishes source and object subfolders and the binary objects to
 ## be built. Normally, you want to change the OBJ files you want to be built, selecting
@@ -52,7 +52,7 @@ PROJNAME   := plants
 Z80CODELOC := 0x4000
 
 ##
-## Folders 
+## Folders
 ##
 ## SRCDIR      = Source files for the project
 ## DSKFILESDIR = Input files to be added to the final DSK production
@@ -97,7 +97,7 @@ DSKINC  := $(OBJDIR)/$(DSK).$(DSKINC_EXT)
 ##
 ##  $(CDT):    Generates the CDT file with main binary
 ##  $(DSK):    Generates the DSK file with main binary
-##  $(DSKINC): Includes all files from DSKFILESDIR into DSK as binaries 
+##  $(DSKINC): Includes all files from DSKFILESDIR into DSK as binaries
 ##
 TARGET := $(CDT) $(DSK) $(DSKINC)
 
@@ -109,8 +109,8 @@ OBJS2CLEAN :=
 ####
 ## SECTION 2: TOOL PATH CONFIGURATION
 ##
-## Paths are configured in the global_paths.mk configuration file included 
-## here. You may overwrite the values of path variables after the include 
+## Paths are configured in the global_paths.mk configuration file included
+## here. You may overwrite the values of path variables after the include
 ## if you wanted specific configuration for this project.
 ####
 include $(CPCT_PATH)/cfg/global_paths.mk
@@ -118,7 +118,7 @@ include $(CPCT_PATH)/cfg/global_paths.mk
 ####
 ## SECTION 3: COMPILATION CONFIGURATION
 ##
-##   Flags used to configure the compilation of your code. They are usually 
+##   Flags used to configure the compilation of your code. They are usually
 ##   fine for most of the projects, but you may change them for special uses.
 #####
 Z80CCFLAGS    :=
@@ -140,10 +140,7 @@ include $(CPCT_PATH)/cfg/global_functions.mk
 # Convert images and tilemaps
 include cfg/image_conversion.mk
 include cfg/tilemap_conversion.mk
-<<<<<<< HEAD
 include cfg/music_conversion.mk
-=======
->>>>>>> 8445e992bba60c109ed4dc211eca50bc351549cb
 
 # Calculate all subdirectories
 SUBDIRS       := $(filter-out ., $(shell find $(SRCDIR) -type d -print))
@@ -152,30 +149,19 @@ OBJSUBDIRS    := $(OBJDSKINCSDIR) $(foreach DIR, $(SUBDIRS), $(patsubst $(SRCDIR
 
 # Calculate all source files
 CFILES         := $(foreach DIR, $(SUBDIRS), $(wildcard $(DIR)/*.$(C_EXT)))
-<<<<<<< HEAD
 CFILES         := $(filter-out $(IMGCFILES), $(CFILES))
 ASMFILES       := $(foreach DIR, $(SUBDIRS), $(wildcard $(DIR)/*.$(ASM_EXT)))
 ASMFILES       := $(filter-out $(IMGASMFILES), $(ASMFILES))
-=======
-CFILES         := $(IMGCFILES) $(filter-out $(IMGCFILES), $(CFILES))
-ASMFILES       := $(foreach DIR, $(SUBDIRS), $(wildcard $(DIR)/*.$(ASM_EXT)))
->>>>>>> 8445e992bba60c109ed4dc211eca50bc351549cb
 BIN2CFILES     := $(foreach DIR, $(SUBDIRS), $(wildcard $(DIR)/*.$(BIN_EXT)))
 DSKINCSRCFILES := $(wildcard $(DSKFILESDIR)/*)
 
 # Calculate all object files
 BIN_OBJFILES   := $(patsubst %.$(BIN_EXT), %.$(C_EXT), $(BIN2CFILES))
 CFILES         := $(filter-out $(BIN_OBJFILES), $(CFILES))
-<<<<<<< HEAD
 GENC_OBJFILES  := $(patsubst $(SRCDIR)%, $(OBJDIR)%, $(patsubst %.$(C_EXT), %.$(OBJ_EXT), $(IMGCFILES)))
 GENASM_OBJFILES:= $(patsubst $(SRCDIR)%, $(OBJDIR)%, $(patsubst %.$(ASM_EXT), %.$(OBJ_EXT), $(IMGASMFILES)))
-=======
->>>>>>> 8445e992bba60c109ed4dc211eca50bc351549cb
 C_OBJFILES     := $(patsubst $(SRCDIR)%, $(OBJDIR)%, $(patsubst %.$(C_EXT), %.$(OBJ_EXT), $(BIN_OBJFILES) $(CFILES)))
 ASM_OBJFILES   := $(patsubst $(SRCDIR)%, $(OBJDIR)%, $(patsubst %.$(ASM_EXT), %.$(OBJ_EXT), $(ASMFILES)))
 DSKINCOBJFILES := $(foreach FILE, $(DSKINCSRCFILES), $(patsubst $(DSKFILESDIR)/%, $(OBJDSKINCSDIR)/%, $(FILE)).$(DSKINC_EXT))
 OBJFILES       := $(C_OBJFILES) $(ASM_OBJFILES)
-<<<<<<< HEAD
 GENOBJFILES    := $(GENC_OBJFILES) $(GENASM_OBJFILES)
-=======
->>>>>>> 8445e992bba60c109ed4dc211eca50bc351549cb

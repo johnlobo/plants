@@ -6,13 +6,13 @@
 #define GRID_H 5
 #define GRID_W 9
 
-typedef {
+typedef struct {
   u8 x;
   u8 y;
   u8 plantType;
 } TPlant;
 
-typedef{
+typedef struct {
   u8 x;
   u8 y;
   u8 speed;
